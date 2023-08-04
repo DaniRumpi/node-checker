@@ -1,0 +1,39 @@
+# ############################
+# Configuration file
+# Archetype
+# ############################
+
+# Service
+service:
+  name: checkpeers
+  port: 10010
+  logLevel: debug
+  timeInterval: 5000
+  swagger:
+      filename: 'swagger.yml'
+      directory: 'src/swagger'
+  
+bootnode:
+  url: http://172.16.0.30
+  port: 8545
+
+EnodesAllowed:
+  - "enode://d11d95ce29e865ba0a3fd0f651c03dda82e5cee2f1d3d11d84e72fa6ebf53fa6a302c285a05605f2cfef214a08a2c0689a54d1517fdc2c0559b36a917dd5e58c@172.16.0.31:30303"
+  - "enode://0b7e05664d6f140c05df94c5129afa53cfde026eb4288ea216d9b88e910cb06df5bdffdb1c465921da18be0698520da08ce6a7933836fd3717fe3e446c277372@172.16.0.32:30303?discport=0"
+  - "enode://60b425b60f35d71bd5221ad8f1c8ffd8d2ef3f3e80541ede954f438208d577c28d99db8bc2461683b18a08692d695200e34491756592e0fde80f93ea181932f3@172.16.0.34:30303"
+  - "enode://728a869121123c50315f182f208e8d7130acd186716659dd02b241fa50311f7c88831a3c21ccb1acdc84de8e708aa45ec1f542877c0881f47b14b46640e7d903@172.16.0.33:30303"
+  - "enode://12b70c48efe9c3528bf44f068acbe2dad895adb3d0152289cf6fae876bf9e8751a9535e6d6d4825721335427376a461b0ff783d2d3b50150dbc34025d5c86d13@172.16.0.30:30303"
+
+ErrorBook:
+  E001:
+    service: Access Node
+    description: Warn in Access node.
+    code: W001
+    httpCode: 401
+    message: Unauthorized. Request access to node.
+  E002:
+    service: Local Service
+    description: Error in the local Service.
+    code: E002
+    httpCode: 404
+    message: Error checking Nodes Connected with Nodes Allowed.

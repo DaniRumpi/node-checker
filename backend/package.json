@@ -1,0 +1,46 @@
+{
+  "name": "node-checker",
+  "version": "1.0.0",
+  "description": "Check node's connection",
+  "repository": {},
+  "main": "app.js",
+  "scripts": {
+    "start": "node_modules/.bin/nodemon app.js",
+    "test": "LOGLEVEL=fatal node_modules/.bin/mocha test/**/*.spec.js --watch",
+    "coverage": "LOGLEVEL=fatal ./node_modules/.bin/nyc --reporter=text-summary --reporter=text --reporter=html ./node_modules/.bin/mocha test/**/*.spec.js --reporter=mochawesome",
+    "lint": "node_modules/.bin/eslint ./src",
+    "lint:fix": "node_modules/.bin/eslint ./src --fix",
+    "test:lint": "node_modules/.bin/eslint ./test -c ./test/.eslintrc.test.json"
+  },
+  "author": "",
+  "license": "",
+  "engines": {
+    "node": "^16"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-openapi": "^6.0.0",
+    "helmet": "^3.22.0",
+    "log4js": "^6.3.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "fetch-mock": "^9.10.7",
+    "mocha": "^9.1.3",
+    "mochawesome": "^7.0.1",
+    "mock-express-request": "^0.2.2",
+    "mock-express-response": "^0.3.0",
+    "node-fetch": "^3.1.0",
+    "nodemon": "^2.0.4",
+    "nyc": "^15.1.0",
+    "proxyquire": "^2.1.3",
+    "sinon": "^12.0.1"
+  }
+}

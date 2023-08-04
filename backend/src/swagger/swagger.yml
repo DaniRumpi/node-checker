@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  title: Node Checker
+  description: Check node's connections
+  version: 1.0.0
+
+paths:
+  /healthcheck:
+    get:
+      description: Returns the service status
+      operationId: healthcheck
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Generic"
+        default:
+          description: An unexpected internal error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Error"
+  
+  /peers:
+    post:
+      tags:
+        - peers
+      description: get all peers of a node and check if there's any unknown
+      operationId: checkNodePeers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                nodeURL:
+                  description: URL of the node to check his connections
+                  type: string
+                besuCall:
+                  description: params to call besu API
+                  type: object
+                  properties:
+                    method:
+                      description: Method to call
+                      type: string
+                    id:
+                      description: Id of the operation
+                      type: number
+                    params:
+                      description: Params of the call
+                      type: object
+                    jsonrpc:
+                      description: JSON RPC version
+                      type: string
+                  required:
+                    - method
+                    - id
+      responses:
+        '200':    # status code
+          description: A meesage with the server status
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Generic'
+
+components:
+
+  schemas:
+    ServerLiveResponse:
+      properties:
+        message:
+          type: string
+
+    Message:
+      properties:
+        message:
+          type: string
+
+    ResponseEnodes:
+      type: array
+      items:
+        type: string
+     
+    Generic:
+      type: object

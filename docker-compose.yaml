@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  node-checker:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    image: "nodechecker"
+    command: npm run start
+    ports:
+     - "10010:10010"
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/app.js:/app/app.js
+
+
+networks:
+  default:
+    external:
+      name: besu-permisioned_network-brazil
